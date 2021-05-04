@@ -2,7 +2,7 @@ name: deploy-container-mf
 on: 
   push:
     branches:
-      - mf-1
+      - main
     paths:
       - "modules/container/**"
 
