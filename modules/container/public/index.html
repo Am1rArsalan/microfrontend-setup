@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <style>
+      html {
+        margin: 0;
+        width: 100%;
+        height: 100%;
+        font-size: 14px;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+        background: #fafafa;
+        /* preload apple touch icon */
+        background-image: url("/icons/apple-touch-icon.png");
+        background-repeat: no-repeat;
+        background-position: -9999% -9999%;
+        background-size: 0%;
+      }
+      body {
+        width: 100%;
+        height: 100%;
+        line-height: 1;
+        margin: 0;
+        -webkit-touch-callout: none; /* iOS Safari */
+        -webkit-user-select: none; /* Safari */
+        -khtml-user-select: none; /* Konqueror HTML */
+        -moz-user-select: none; /* Old versions of Firefox */
+        -ms-user-select: none; /* Internet Explorer/Edge */
+        user-select: none; /* Non-prefixed version, currently
+                                  supported by Chrome, Edge, Opera and Firefox */
+      }
+      body:not(.is-ios) .animated-wheel .item.going-out-top {
+        transform: rotateX(10deg) translateY(-60px) scale(0.75) !important;
+      }
+
+      body:not(.is-ios) .animated-wheel .item.going-out-bottom {
+        transform: rotateX(-10deg) translateY(60px) scale(0.75) !important;
+      }
+
+      #root {
+        width: 100%;
+        height: 100%;
+      }
+      .loadingContainer {
+        display: flex;
+        width: 100vw;
+        height: 100%;
+        justify-content: center;
+        align-items: center;
+        position: fixed;
+        top: 0;
+        right: 0;
+        left: 0;
+        z-index: 100000000;
+      }
+
+      #splash img {
+        z-index: 1;
+      }
+
+      @keyframes scrolling {
+        0% {
+          -webkit-transform: translateY(0);
+        }
+        50% {
+          -webkit-transform: translateY(-2000px);
+        }
+        100% {
+          -webkit-transform: translateY(0);
+        }
+      }
+
+      .loader {
+        position: absolute;
+        opacity: 0.7;
+      }
+
+      .loader circle {
+        animation: draw 2s infinite ease-in-out;
+        transform-origin: 75px 75px;
+        transform: rotate(-90deg);
+      }
+
+      .loader-2 circle,
+      .loader-6 circle {
+        animation-delay: 0.5s;
+      }
+
+      .loader-7 circle {
+        animation-delay: 1s;
+      }
+
+      .loader-4 circle,
+      .loader-8 circle {
+        animation-delay: 1.5s;
+      }
+
+      .loader-5 circle {
+        opacity: 0.2;
+      }
+
+      @keyframes draw {
+        50% {
+          stroke-dashoffset: 0;
+          transform: scale(0.5);
+        }
+      }
+      .logo {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+      }
+
+      @keyframes rotating {
+        from {
+          -ms-transform: rotate(0deg);
+          -moz-transform: rotate(0deg);
+          -webkit-transform: rotate(0deg);
+          transform: rotate(0deg);
+        }
+        to {
+          -ms-transform: rotate(360deg);
+          -moz-transform: rotate(360deg);
+          -webkit-transform: rotate(360deg);
+          transform: rotate(360deg);
+        }
+      }
+
+      .spinner {
+        border-radius: 50%;
+        width: 5em;
+        height: 5em;
+        position: absolute;
+        clip: rect(0, 5em, 5em, 2.5em);
+        animation: rotating 1s linear infinite;
+      }
+      .progress-circle {
+        font-size: 5px;
+        margin: 20px;
+        position: relative;
+        padding: 0;
+        width: 5em;
+        height: 5em;
+        background-color: #f2e9e1;
+        border-radius: 50%;
+        line-height: 5em;
+      }
+
+      .progress-circle:after {
+        border: none;
+        position: absolute;
+        top: 0.35em;
+        left: 0.35em;
+        text-align: center;
+        display: block;
+        border-radius: 50%;
+        width: 4.3em;
+        height: 4.3em;
+        background-color: #fff;
+        content: " ";
+      }
+      .left-half-clipper {
+        border-radius: 50%;
+        width: 5em;
+        height: 5em;
+        position: absolute;
+        clip: rect(0, 5em, 5em, 2.5em);
+      }
+      .progress-circle.over50 .left-half-clipper {
+        clip: rect(auto, auto, auto, auto);
+      }
+
+      .value-bar {
+        position: absolute;
+        clip: rect(0, 2.5em, 5em, 0);
+        width: 5em;
+        height: 5em;
+        border-radius: 50%;
+        border: 0.45em solid #334cd2;
+        box-sizing: border-box;
+      }
+
+      .progress-circle.over50 .first50-bar {
+        position: absolute;
+        clip: rect(0, 5em, 5em, 2.5em);
+        background-color: #334cd2;
+        border-radius: 50%;
+        width: 5em;
+        height: 5em;
+      }
+      .progress-circle:not(.over50) .first50-bar {
+        display: none;
+      }
+      .progress-circle.p66 .value-bar {
+        transform: rotate(238deg);
+      }
+      .versionName {
+        font-size: 12px;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="root">
+      <div id="splash">
+        <div class="loadingContainer">
+          <div class=""></div>
+          <div class="logo">
+            <div></div>
+            <div class="spinner progress-circle over50 p66">
+              <div class="left-half-clipper">
+                <div class="first50-bar"></div>
+                <div class="value-bar"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      Loading.....
+    </div>
+  </body>
+</html>
